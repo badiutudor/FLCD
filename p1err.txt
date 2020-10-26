@@ -1,0 +1,10 @@
+main{
+	integer a,b,c,max;
+	a=inputLine().Integer();
+	b=inputLine().Integer();
+	c=inputLine().Integer();
+	max?=a;
+	is a>1b ? max=a | {max=b} ;
+	is c>max? max=c;
+	outputString("Max is:+max.String(),1); 
+}

@@ -5,4 +5,9 @@ public class Node {
         this.value=value;
         next=null;
     }
+
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }

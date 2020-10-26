@@ -1,0 +1,19 @@
+main{
+	integer n,current;
+	string x;
+	integer sum;
+	integer list numbers;
+	x="n?\n";
+	sum=0;
+	outputString(x);
+	inputLine(x);
+	n=x.Integer();
+	current=0;
+	outputString("Input "+n.String()+" integers")
+	do{
+		numbers[current]=inputLine().Integer();
+		sum=sum+numbers[current];
+		current=current+1;
+	}repeat if(n equals current);
+	outputString("Sum="+sum.String(),1);
+}

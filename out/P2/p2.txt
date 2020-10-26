@@ -1,0 +1,12 @@
+main{
+	string base,append;
+	integer n;
+	outputString("Append this:");
+	inputLine(append);
+	outputString("To this:");
+	inputLine(base);
+	outputString("This many times:");
+	n=inputLine().Integer();
+	repeat(n): base=base+append;
+	outputString(base);
+}
