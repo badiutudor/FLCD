@@ -37,7 +37,7 @@ public class SymbolTable {
         while (crnt.next != null) {
             crnt = crnt.next;
             inlist++;
-            if (crnt.value.equals(token))
+            if (crnt.value.getClass() == token.getClass() && crnt.value.toString().equals(str))
                 return new Pair<>(pos, inlist);
         }
         return null;
