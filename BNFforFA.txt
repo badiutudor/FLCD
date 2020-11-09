@@ -1,0 +1,11 @@
+FAfile:= startstate "\n" listofstates "\n" listoffinalstates "\n" alphabet "\n" listoftransitions
+startstate:=state
+listofstates:=state | state","listofstates
+listoffinalstates:=state | state","listoffinalstates
+alphabet:=symbol|symbol","alphabet
+listoftransitions:=transition|transition"\n"listoftransitions
+transition=state","symbol","state
+state:=string
+symbol:=char
+string:={char}
+char:=[ASCIICHARACTER]
