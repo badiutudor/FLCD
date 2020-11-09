@@ -13,6 +13,8 @@ public class LexicalAnalyzer {
     private List<String> operators=new ArrayList<>();
     private List<String> separators=new ArrayList<>();
     private List<String> reserved=new ArrayList<>();
+    private FA identifierFA=new FA("FAidentifier.in");
+    private FA intFA=new FA("FAinteger.in");
     public LexicalAnalyzer() throws FileNotFoundException{
         File input=new File("token.in");
         Scanner reader=new Scanner(input);
@@ -33,6 +35,14 @@ public class LexicalAnalyzer {
             return new String[]{line.substring(i+1),line.substring(0,i+1),"string"};
     }
         return null;
+    }
+    private String[] checkIntFA(String line) throws Error{
+        String res=intFA.verifySequenceSUBSTRING(line);
+        if(res==null)
+            return null;
+        if(diginumeric(line.charAt(res.length())))
+            throw new Error(line);
+        return new String[]{line.substring(res.length()),res,"identifier"};
     }
     private String[] checkInt(String line) throws Error{
         if(line.charAt(0)=='+'||line.charAt(0)=='-'){
@@ -70,16 +80,22 @@ public class LexicalAnalyzer {
         }
         return null;
     }
+    private String[] checkIdentifierFA(String line) throws Error{
+        String res=identifierFA.verifySequenceSUBSTRING(line);
+        if(res==null)
+            return null;
+        return new String[]{line.substring(res.length()),res,"identifier"};
+    }
     private String[] nextToken(String line) throws Error{
         while(line.length()!=0 && (line.charAt(0)==' '||line.charAt(0)=='\t'))
             line=line.substring(1);
         if(line.equals(""))
             return null;
-        String[] result=null;
+        String[] result=null; // rest of line,token,type
         result=checkString(line);
         if(result!=null)
             return result;
-        result=checkInt(line);
+        result=checkIntFA(line);
         if(result!=null)
             return result;
         for(String op:operators){
@@ -97,7 +113,7 @@ public class LexicalAnalyzer {
                 return new String[]{line.substring(res.length()),res,"reserved"};
             }
         }
-        result=checkIdentifier(line);
+        result=checkIdentifierFA(line);
         if(result!=null)
             return result;
         throw new Error(line);
@@ -139,6 +155,7 @@ public class LexicalAnalyzer {
                     if(result==null)
                         break;
                     else{
+                        System.out.println(result[1]);
                         line=result[0];
                         token=result[1];
                         type=result[2];
