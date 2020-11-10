@@ -40,7 +40,7 @@ public class LexicalAnalyzer {
         String res=intFA.verifySequenceSUBSTRING(line);
         if(res==null)
             return null;
-        if(diginumeric(line.charAt(res.length())))
+        if(res.length()<line.length() && diginumeric(line.charAt(res.length())))
             throw new Error(line);
         return new String[]{line.substring(res.length()),res,"identifier"};
     }

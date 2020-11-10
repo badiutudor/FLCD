@@ -5,12 +5,16 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class FA{
+    //Representation: states,finalstates and alphabet stored as Sets of strings
+    //                transitions stored in Map as key:Pair<String:startstate,Char:TransitionSymbol> value:String:endstate
+    //                deterministic flag is set automatically when reading a new FA
     public boolean deterministic=true;
     public String q0;
     public Set<String> states;
     public Set<String> finalstates;
     public Set<String> alphabet;
     public Map<Pair<String,Character>, List<String>> transitions;
+    //the FA is read during initialisation
     public FA(String filename) throws FileNotFoundException {
         states=new TreeSet<String>();
         finalstates=new TreeSet<String>();
@@ -63,6 +67,7 @@ public class FA{
             }
         }
     }
+    //checks if whole input string is a valid sequence
     public boolean verifySequence(String sequence){
         if(!deterministic)
             throw new Error("not a DFA");
@@ -77,6 +82,7 @@ public class FA{
         }
         return finalstates.contains(state);
     }
+
     public String verifySequenceSUBSTRING(String sequence){ //returns the longest viable sequence substring
         if(!deterministic)
             throw new Error("not a DFA");

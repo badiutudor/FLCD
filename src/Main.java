@@ -18,8 +18,6 @@ public class Main {
             e.printStackTrace();
         }*/
         FA fa=new FA("FA.in");
-        String seq="011110";
-        System.out.println(seq+" accepted? "+fa.verifySequence(seq));
         fa.ConsoleMenu();
 
 
