@@ -31,6 +31,7 @@ public class SymbolTable {
         Node crnt = array[pos];
         if (crnt == null) {
             return null;
+            // Review: I would have used getters and setters
         } else if (crnt.value.getClass() == token.getClass() && crnt.value.toString().equals(str)) {    // crnt.value.getClass() == token.getClass() && crnt.value.toString().equals(str)
             return new Pair<>(pos, inlist);
         }

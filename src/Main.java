@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class Main {
+    //Review: not much to review...almost perfect :D
     public static void main(String[] args) throws IOException {
         /*SymbolTable st=new SymbolTable(13);
         List<Pair<String,Pair<Integer,Integer>>> pif=new ArrayList<>();
